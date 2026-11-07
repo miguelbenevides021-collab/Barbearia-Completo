@@ -54,8 +54,9 @@ public class SecurityConfig {
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/servicos/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/barbeiro/**").permitAll()
+                        .requestMatchers("/barbeiro/**").hasRole("ADMIN")
                         .requestMatchers("/servicos/**").hasRole("ADMIN")
-
                         .anyRequest().authenticated()
                 )
 
