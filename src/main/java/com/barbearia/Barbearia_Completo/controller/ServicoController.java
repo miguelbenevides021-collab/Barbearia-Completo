@@ -3,6 +3,7 @@ package com.barbearia.Barbearia_Completo.controller;
 import com.barbearia.Barbearia_Completo.dto.ServicoRequest;
 import com.barbearia.Barbearia_Completo.dto.ServicoResponse;
 import com.barbearia.Barbearia_Completo.service.ServicoService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +26,7 @@ public class ServicoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ServicoResponse criar(@RequestBody ServicoRequest request){
+    public ServicoResponse criar(@Valid @RequestBody ServicoRequest request){
         return service.criar(request);
     }
 @DeleteMapping("/{id}")
@@ -35,7 +36,7 @@ public class ServicoController {
     }
 
     @PutMapping("/{id}")
-    public ServicoResponse atualizar(@PathVariable Long id, @RequestBody ServicoRequest request){
+    public ServicoResponse atualizar(@PathVariable Long id, @Valid @RequestBody ServicoRequest request){
         return service.atualizar(id, request);
     }
 }
