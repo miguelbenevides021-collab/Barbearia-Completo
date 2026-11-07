@@ -2,6 +2,7 @@ package com.barbearia.Barbearia_Completo.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -51,8 +52,11 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
-                        .requestMatchers("/admin/**").hasRole("ADMIN")// cadastro e login: livres
-                        .anyRequest().authenticated()              // o resto: só com token válido
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/servicos/**").permitAll()
+                        .requestMatchers("/servicos/**").hasRole("ADMIN")
+
+                        .anyRequest().authenticated()
                 )
 
                 // Coloca o nosso filtro ANTES do filtro padrão de login do Spring
