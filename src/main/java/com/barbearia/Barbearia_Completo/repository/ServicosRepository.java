@@ -6,6 +6,5 @@ import java.util.List;
 
 public interface ServicosRepository extends JpaRepository<ServicosModel, Long> {
     boolean existsByNameIgnoreCase(String name);
-
     List<ServicosModel> findByActiveTrue();
 }
